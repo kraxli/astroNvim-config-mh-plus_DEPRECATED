@@ -61,5 +61,5 @@ return {
     },
     swap = { enable = false },
   },
-  indent = { enable = true, disable = { "python" } },
+  indent = { enable = true, disable = { "python", "alpha" } },
 }

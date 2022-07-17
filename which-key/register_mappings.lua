@@ -11,7 +11,7 @@ return {
       ["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
       ["r"] = { "<cmd>SendHere<cr>", "Set REPL" },
       ["."] = { "<cmd>cd %:p:h<cr>", "Set CWD" },
-
+      ["<F4>"] = { '=strftime("%Y-%m-%d")<CR>P', "Time stamp"}, -- '=strftime("%H:%M")<CR>P'
       a = {
         name = "Annotate",
         ["<cr>"] = { function() require("neogen").generate() end, "Current" },
@@ -19,6 +19,11 @@ return {
         f = { function() require("neogen").generate { type = "func" } end, "Function" },
         t = { function() require("neogen").generate { type = "type" } end, "Type" },
         F = { function() require("neogen").generate { type = "file" } end, "File" },
+      },
+
+      b = {
+          name = 'Buffer',
+          c = {'function() MiniBufremove.delete() end', 'Close buffer'},
       },
 
       f = {
@@ -38,7 +43,7 @@ return {
       },
 
       m = {
-        name = "Compiler",
+        name = "Compiler / Make",
         k = {
           function()
             vim.cmd "silent! write"
@@ -90,14 +95,15 @@ return {
         f = { "<cmd>TexlabForward<cr>", "Forward Search" },
       },
 
-      d = {
-        name = "Document",
+      w = {
+        name = "Document", -- Writer: markdown, latex, wiki
         n = { "<cmd>enew<cr>", "New File" },
         s = { "<cmd>setlocal spell!<cr>", "Toggle Spelling" },
         t = { "<cmd>TableModeToggle<cr>", "Toggle Table Mode" },
         p = { "<cmd>setlocal paste!<cr>", "Toggle Paste" },
         b = { "<cmd>read !getbib -c<cr>", "Get Bib" },
         c = { function() utils.vim_opt_toggle("conceallevel", 2, 0, "Conceal") end, "Toggle Conceal" },
+        v = {"<Plug>MarkdownPreviewToggle<cr>", "Markdown preview"},
         w = { function() utils.vim_opt_toggle("wrap", true, false, "Soft Wrap") end, "Toggle Soft Wrapping" },
         W = { function() utils.vim_opt_toggle("textwidth", 80, 0, "Hard Wrap") end, "Toggle Hard Wrapping" },
         m = { function() require("nabla").popup() end, "Preview Math" },
@@ -142,8 +148,7 @@ return {
         X = { "<Plug>(simple-todo-mark-as-undone)", "Mark Undone" },
         ["<tab>"] = { "<Plug>(simple-todo-mark-switch)", "Toggle Todo" },
       },
-
-      x = {
+      d = { -- TODO: d??
         name = "Debugger",
         b = { function() require("dap").toggle_breakpoint() end, "Toggle Breakpoint" },
         B = { function() require("dap").clear_breakpoints() end, "Clear Breakpoints" },
@@ -160,7 +165,49 @@ return {
         w = { function() require("dapui").float_element "watches" end, "Watches" },
         x = { function() require("dap.ui.widgets").hover() end, "Inspect" },
       },
-    },
+
+      D = {"<cmd>Dashboard<CR>", "Dashboard"},
+
+      l = {
+        -- TODO: see what lvim has!
+        name = "Lsp",
+        a  = {"<cmd>Telescope lsp_code_actions<CR>", "Code actions"},
+        A  = {'<cmd>Telescope lsp_range_code_actions<CR>', "Range code actions"},
+        d  = {'<cmd>Telescope lsp_definitions<CR>', "Lsp definitions"},
+        D = { "<cmd>require('telescope.builtin').diagnostics()", "All diagnostics" },
+        z  = {'<cmd>Telescope lsp_references<CR>', "References"},
+        R  = {'<cmd>Telescope lsp_references<CR>', "References"},
+        v  = {"<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Definition vsplit"},
+        Dh = { "<cmd>vim.diagnostic.open_float", "Hover diagnostic" },
+        -- leaderNormal['lI'] = {'<cmd>Telescope lsp_implementations<CR>', "Lsp implementations"}
+      },
+    
+      t = {
+          name = "Terminal",
+          -- p = { [[<cmd>lua require('core.utils').toggle_term_cmd({cmd='ipython', on_open='function(term) vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true}) end'})<CR>]], "iPython" },
+          -- p = {[[<cmd>exe v:count1 . "lua require('core.utils').toggle_term_cmd({cmd='ipython', count=vim.v.count})"<CR>]], "iPython" },
+          f = { '<Cmd>Telescope termfinder find<CR>', 'Terminal list' },
+          H = { "<cmd>lua require('core.utils').toggle_term_cmd({cmd='htop'})<CR>", "Htop" },
+          l = { [[<cmd>lua require("core.utils").toggle_term_cmd({cmd="lua"})<CR>]], "Lua" },
+          p = { [[<cmd>lua require('core.utils').toggle_term_cmd({cmd='ipython', hidden=false})<CR>]], "iPython" },
+          t = { '<Cmd>lua require("user.utils").toggle_term()<CR>', 'ToggleTerm' },
+          x = { [[<cmd>lua require('user.utils').execute_file()<CR>]], 'Execute buffer' },
+          z = { [[<cmd>lua require "core.utils".toggle_term_cmd({cmd=vim.o.shell})<CR>]], "Shell" },
+      },
+
+      -- Git, enhance base functionality
+      g = {
+          m = {"<cmd>Neogit<CR>", "Magit"},  -- noremap=true
+          v = { '<cmd>diffview: diff HEAD', "Diffview" },
+          y = {"<cmd>lua require('core.utils').toggle_term_cmd({cmd = 'lazygit', count = 1, direction = 'float'})<CR>", 'Lazygit'},
+          -- g = {"<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd = 'lazygit', count = 1, direction = 'float'})<CR>", 'Lazygit'},
+      },
+
+      u = {
+        name = 'Utils',
+        w = {"<cmd>keeppatterns %substitute/\\s\\+$//e<CR>", "Clear postspace"},
+      },
+    }, -- end prefix <leader>
     ["]"] = {
       f = "Next function start",
       x = "Next class start",
@@ -224,7 +271,90 @@ return {
         },
       },
     },
+    ["<localleader>"] = {
+
+      -- TODO: commented out commands are not working - check rafi/vim-config for fix
+      -- Telescope general pickers
+      a = { "<Cmd>Neotree focus<CR>", "Nvimtree toggle"},  -- Nvimtree
+      b = { '<cmd>Telescope buffers<CR>', "Buffers"},
+      c = { '<cmd>lua require("telescope.builtin").command_history()<CR>', "Command history"},
+      d = { '<cmd>lua require"user.plugins.telescope".pickers.plugin_directories()<CR>', "Directories"},
+      e = { "<Cmd>Neotree toggle<CR>", "Nvimtree toggle"},  -- Nvimtree
+      f = { '<cmd>lua require("telescope.builtin").find_files()<CR>', "Files"},
+      g = { '<cmd>lua require("telescope.builtin").live_grep()<CR>', "Live grep"},
+      G = { "<cmd>lua require('user.plugins.telescope').pickers.grep_string_cursor()<cr>", "Grep cursor word"},
+      h = {'<cmd>lua require("telescope.builtin").highlights()<CR>', "Highlights"},
+      H = {'<cmd>lua require("telescope.builtin").search_history()<CR>', "Search history"},
+      j = {'<cmd>lua require("telescope.builtin").jumplist()<CR>', "Jumplist"},
+      l = { name='VimTex' },
+      m = {'<cmd>lua require("telescope.builtin").marks()<CR>', "Marks"},
+      n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", 'Notifications' },  -- require("telescope").load_extension("notify")
+      N = { '<cmd>lua require"user.plugins.telescope".pickers.notebook()<CR>', "Notebook"},
+      -- p = {'<cmd>lua require("telescope.builtin").projects()<CR>', "Projects"},
+      -- o = {'<cmd>lua require("telescope.builtin").vim_options()<CR>', "Vim options"},
+      r = {'<cmd>lua require("telescope.builtin").resume()<CR>', "Resume last"},
+      R = {'<cmd>lua require("telescope.builtin").pickers()<CR>', "Pickers"},
+      -- S = {'<cmd>lua require("telescope.builtin").session-lens search_session()<CR>', "Search session"},
+      s = {'<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>', "Search current Buffer" },
+      t = {'<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>', "LSP workspace symbols"},
+      u = {'<cmd>lua require("telescope.builtin").spell_suggest()<CR>', "Spell suggestions"},
+      v = {'<cmd>lua require("telescope.builtin").registers()<CR>', "Registers"},
+      x = {'<cmd>lua require("telescope.builtin").oldfiles()<CR>', "Files old"},
+      -- z = {'<cmd>Zoxide<CR>', "Zoxide"},
+      ["/"] = { '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>', "Search current buffer"},
+
+      -- Trouble --
+      T = {
+        name = "Diagnostics",
+        c = {"<cmd>TroubleClose<cr>", "Close"},
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document" },
+        D = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+        i = { "<cmd>TroubleToggle lsp_implementations<cr>", "Implementations" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Location list" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+        r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+        R = {"<cmd>TroubleRefresh<cr>", "Refresh"},
+        t = { "<cmd>TroubleToggle<cr>", "Trouble" },
+        T = { "<cmd>TroubleToggle lsp_type_definitions<cr>", "Types" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace" },
+      },
+    },
+    w = {
+      name = "Window", -- optional group name
+      g = { '<cmd>call utils#toggle_background()<CR>', "Toggle background color" }, -- create a binding with label
+      b = { '<cmd>buffer#<CR>', "Buffer alternate"},
+      o = { '<cmd>only<CR>', "Only this"},
+      c = { '<cmd>close<CR>', "Close"},
+      d = { '<cmd>bdelete<CR>', "Buffer delete"},
+      q = { '<cmd>quit<CR>', "Quit"},
+      w = { '<cmd>save %<CR>', 'Save'},
+      x = { '<cmd>call utils#window_empty_buffer()<CR>', "Buffer empty"},
+      z = { '<cmd>call utils#zoom()<CR>', "Zoom"},
+
+      -- h = { '<cmd>split<CR>', "Split horizontal"},
+      -- v = { '<cmd>vsplit<CR>', "Split vertical"},
+      --Split current buffer, go to previous window and previous buffer
+      h = { '<cmd>split<CR>:wincmd p<CR>:e#<CR>', "Split horizontal"},
+      v = { '<cmd>vsplit<CR>:wincmd p<CR>:e#<CR>', "Split vertical"},
+      t = { '<cmd>tabnew<CR>', "Tab new"},
+      n = { '<cmd>tabnext<CR>', "Tab next"},
+      p = { '<cmd>tabprev<CR>', "Tab previous"},
+
+      f = { '<cmd>lcd %:p:h<CR>'},
+    },
+    -- Telescope LSP related
+    l = {
+      name = "Lsp",
+      a = {'<cmd>Telescope lsp_code_actions<CR>', "Lsp code actions"},
+      c = {'<cmd>Telescope lsp_range_code_actions<CR>', "Lsp range code actions"},
+      d = {'<cmd>Telescope lsp_definitions<CR>', "Lsp definitions"},
+      i = {'<cmd>Telescope lsp_implementations<CR>', "Lsp implementations"},
+      r = {'<cmd>Telescope lsp_references<CR>', "Lsp references"},
+      t = {"<cmd>ToggleDiag<cr>", "Toggle virtual text"},
+      v = {"<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Definition vsplit"},
+    },
   },
+  -- insert mode
   i = {
     ["<c-d>"] = {
       n = { "<c-r>=strftime('%Y-%m-%d')<cr>", "Y-m-d" },
@@ -235,6 +365,7 @@ return {
       d = { "<c-r>=strftime('%Y/%m/%d %H:%M:%S -')<cr>", "Y/m/d H:M:S -" },
     },
   },
+  -- visual mode
   v = {
     ["<leader>"] = {
       h = {
@@ -269,11 +400,17 @@ return {
         X = { "<Plug>(simple-todo-mark-as-undone)", "Mark Undone" },
         ["<tab>"] = { "<Plug>(simple-todo-mark-switch)", "Toggle Todo" },
       },
-
       x = {
         name = "Debugger",
         e = { function() require("dapui").eval() end, "Evaluate Line" },
       },
     },
   },
+  -- x-mode (visual)
+  x = {
+    ["<localleader"] = {
+      g = {'<cmd>lua require"user.plugins.telescope".pickers.grep_string_visual()<cr>', "Grep selection"},
+      G = {'<cmd>lua require"user.plugins.telescope".pickers.grep_string_visual()<cr>', "Grep selection"},
+    }
+  }
 }
