@@ -473,7 +473,7 @@ return {
   {
     'vimwiki/vimwiki',
     -- map = { "n: <Plug>" },
-    ft = {'vimwiki', 'markdown' },
+    ft = { 'vimwiki', 'markdown', 'vimwiki.markdown' },
     cmd  = { 'VimwikiIndex', 'VimwikiUISelect' },
     setup = function ()
       require('user.plugins.vimwiki')

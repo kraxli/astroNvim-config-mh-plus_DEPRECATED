@@ -32,7 +32,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 -- autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup="IncSearch", timeout=150})   -- higroup = 'Visual'
 
-
 vim.cmd [[
 
   augroup _general_settings
@@ -43,6 +42,7 @@ vim.cmd [[
   autocmd FileType toggleterm,qf,help,man,lspinfo,TelescopePrompt nnoremap <silent><buffer> <localleader>c :close<CR>
   " set file types
   autocmd BufRead,BufEnter,BufWinEnter,BufNew,VimEnter *.md,*.wiki setlocal filetype=vimwiki.markdown
+  autocmd FileType vimwiki.markdown,vimwiki,markdown,text set foldmethod=expr foldexpr=MkdFoldSimple()
   
   augroup end
   
