@@ -473,12 +473,23 @@ return {
   {
     'vimwiki/vimwiki',
     -- map = { "n: <Plug>" },
-    ft = {'vimwiki', 'markdown' },
+    ft = { 'vimwiki', 'markdown', 'vimwiki.markdown' },
     cmd  = { 'VimwikiIndex', 'VimwikiUISelect' },
     setup = function ()
       require('user.plugins.vimwiki')
     end,
   },
+
+  -- {
+  --   'masukomi/vim-markdown-folding',
+  --   ft = { 'vimwiki', 'markdown', 'vimwiki.markdown' },
+  --   setup = function()
+  --     -- NestedMarkdownFolds()
+  --     -- vim.cmd([[
+  --       -- " autocmd FileType vimwiki.markdown,vimwiki,markdown,text set foldmethod=expr foldexpr=NestedMarkdownFolds()
+  --     -- ]])
+  --   end
+  -- },
 
   -- { 'anuvyklack/pretty-fold.nvim',
   --    requires = 'anuvyklack/nvim-keymap-amend', -- only for preview

@@ -321,7 +321,7 @@ return {
     },
     w = {
       name = "Window", -- optional group name
-      g = { '<cmd>call utils#toggle_background()<CR>', "Toggle background color" }, -- create a binding with label
+      g = { '<cmd>call Toggle_background()<CR>', "Toggle background color" }, -- create a binding with label
       b = { '<cmd>buffer#<CR>', "Buffer alternate"},
       o = { '<cmd>only<CR>', "Only this"},
       c = { '<cmd>close<CR>', "Close"},

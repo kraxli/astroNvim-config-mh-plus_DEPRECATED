@@ -8,6 +8,7 @@
 - [x] which-key
 - [x] plugins
 - [x] user.plugins.telescope".pickers
+- [ ] local
 
 
 # header 1 
