@@ -480,6 +480,17 @@ return {
     end,
   },
 
+  -- {
+  --   'masukomi/vim-markdown-folding',
+  --   ft = { 'vimwiki', 'markdown', 'vimwiki.markdown' },
+  --   setup = function()
+  --     -- NestedMarkdownFolds()
+  --     -- vim.cmd([[
+  --       -- " autocmd FileType vimwiki.markdown,vimwiki,markdown,text set foldmethod=expr foldexpr=NestedMarkdownFolds()
+  --     -- ]])
+  --   end
+  -- },
+
   -- { 'anuvyklack/pretty-fold.nvim',
   --    requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
   --    config = function()
