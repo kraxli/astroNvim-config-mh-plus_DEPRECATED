@@ -9,7 +9,7 @@ git merge --allow-unrelated-histories AstroNvim/main
 
 ```zsh
 cd ~/.config/nvim
-git co -b merge_astroNvim
+git co -b merge_user_mehalter
 git remote add user_mehalter https://code.mehalter.com/projects/68/files
 git fetch user_mehalter --tags
 git merge --allow-unrelated-histories user_mehalter
