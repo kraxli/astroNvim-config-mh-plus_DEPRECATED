@@ -750,4 +750,4 @@ return {
       require("refactoring").setup {}
     end,
   },
-},
+}
