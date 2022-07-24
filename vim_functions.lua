@@ -12,7 +12,7 @@ vim.cmd([[
     " let nxt_syntax_group = synIDattr(synID(this_line + 1, 1, 1), 'name')
 
     let pounds = HeaderLevel(this_line)  " strlen(matchstr(getline(this_line), '^#\+'))
-    let isCodeBlock = (cur_syntax_group ==? 'mkdCode' || cur_syntax_group ==? 'markdownCode')
+    let isCodeBlock = (cur_syntax_group ==? 'mkdCode' || cur_syntax_group ==? 'markdownCode' || cur_syntax_group =~? 'code' || cur_syntax_group =~? 'comment')
 
     if (pounds && !isCodeBlock)
       return '>' . pounds  " start a fold level
