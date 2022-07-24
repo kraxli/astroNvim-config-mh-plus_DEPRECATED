@@ -69,12 +69,16 @@ M.openExtApp = function()
   --    local function is_pwsh(shell)
   --        return string.find(shell, "pwsh") or string.find(shell, "powershell")
   --    end
+  
+  local has_win = (vim.fn.has("win32") == 1 or vim.fn.has("win64"))
+  local has_powershell = string.match(vim.env.SHELL, 'powershell') or string.match(vim.env.SHELL, 'pwsh') -- posh? , vim.o.shell
 
-  local commandsOpen = {unix="xdg-open", mac="open", win="start"}
+  local commandsOpen = {unix="xdg-open", mac="open", win="start", pwsh="Invoke-Item"}  -- or ii as alias for Invoke-Item / is is it pwsh instead of posh?
   local osKey = ''
   if vim.fn.has "mac" == 1 then osKey = "mac"
-  elseif vim.fn.has "unix" == 1 then osKey = "unix"
-  elseif (vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1) then osKey = "win"
+    elseif vim.fn.has "unix" == 1 then osKey = "unix"
+    elseif has_powershell then osKey = 'pwsh'
+    elseif has_win == 1 & has_powershell ~= 1 then osKey = "win"
   end
 
   local cword = vim.fn.expand("<cWORD>")
