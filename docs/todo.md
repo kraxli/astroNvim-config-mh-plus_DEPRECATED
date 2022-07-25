@@ -1,24 +1,15 @@
 
-- [x] user/settings.lua
-- [x] user/autocmds.lua
-- [ ] autoload/*  -> markdown folding
-- [ ] after/ftplugin
-- [x] user/utils.lua
-- [.] user/which-key/register_n_leader.lua ??
-- [x] which-key
-- [x] plugins
-- [x] user.plugins.telescope".pickers
-- [ ] local
+- [X] user/settings.lua
+- [X] user/autocmds.lua
+- [X] autoload/*  -> markdown folding
+- [X] after/ftplugin
+- [X] user/utils.lua
+- [X] user/which-key/register_n_leader.lua ??
+- [X] which-key
+- [X] plugins
+- [X] [x] user.plugins.telescope".pickers
+- [X] local
+- [ ] Customize cmp Completion
+- [ ] lazygit (go back)
+- [o] better / consistent quitting (closing) of buffers, expecially floating windows/buffers
 
-
-# header 1 
-
-asdf 
-
-- adf
-- asdf 
-
-## headerr 1.2
-
-
-# header 2

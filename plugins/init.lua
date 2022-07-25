@@ -298,6 +298,10 @@ return {
   },
   {
     'renerocksai/calendar-vim',  -- TODO: lazy loading ft or cmd
+    cmd = {'Calendar'},
+    config = function()
+      require("user.plugins.calendar-vim")
+    end
   },
   -- { 'mracos/mermaid.vim', ft = {'markdown', 'vimwiki', 'mermaid'} },
   { 'chazmcgarvey/vim-mermaid', ft = {'markdown', 'vimwiki', 'mermaid'} },

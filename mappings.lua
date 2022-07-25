@@ -60,18 +60,18 @@ local keymap = vim.api.nvim_set_keymap
   vim.keymap.set("n", [[<C-§>]], [[v:count == 0 ? '<CMD>lua require("Comment.api").call("toggle_current_linewise_op")<CR>g@$' : '<CMD>lua require("Comment.api").call("toggle_linewise_count_op")<CR>g@$']], {desc=''})
 
   -- floating window
-  -- vim.api.nvim_set_keymap('', '<F2>', '<Cmd>lua require("user.utils").toggle_term()<CR>', {noremap=false})
-  -- vim.api.nvim_set_keymap('', '<c-t>', '<Cmd>lua require("user.utils").toggle_term()<CR>', {noremap=false})
-  -- vim.cmd([[
-  --   vnoremap <silent><leader>x :'<,'>lua require('user.utils').excecute_code('visual_lines')<CR>
-  --   nnoremap <silent><leader>x <cmd>lua require('user.utils').excecute_code('single_line')<CR>
-  --   vnoremap <silent><c-x> :'<'> lua require('user.utils').excecute_code('visual_selection')<CR>
-  --   inoremap <silent><c-x> <cmd>lua require('user.utils').excecute_code('single_line')<CR>  
-  --   nnoremap <silent><c-x> <cmd>lua require('user.utils').excecute_code('single_line')<CR>
-  --   " TODO: run file command for ipython
-  --   " 2TermExec cmd="git status" dir=~/<my-repo-path>
-  -- ]])
-  -- vim.api.nvim_set_keymap('n', "<F5>", [[<cmd>lua require('user.utils').execute_file()<CR>]], opts)
+  vim.api.nvim_set_keymap('', '<F2>', '<Cmd>lua require("user.utils").toggle_term()<CR>', {noremap=false})
+  vim.api.nvim_set_keymap('', '<c-t>', '<Cmd>lua require("user.utils").toggle_term()<CR>', {noremap=false})
+  vim.cmd([[
+    vnoremap <silent><leader>x :'<,'>lua require('user.utils').excecute_code('visual_lines')<CR>
+    nnoremap <silent><leader>x <cmd>lua require('user.utils').excecute_code('single_line')<CR>
+    vnoremap <silent><c-x> :'<'> lua require('user.utils').excecute_code('visual_selection')<CR>
+    inoremap <silent><c-x> <cmd>lua require('user.utils').excecute_code('single_line')<CR>
+    nnoremap <silent><c-x> <cmd>lua require('user.utils').excecute_code('single_line')<CR>
+    " TODO: run file command for ipython
+    " 2TermExec cmd="git status" dir=~/<my-repo-path>
+  ]])
+  vim.api.nvim_set_keymap('n', "<F5>", [[<cmd>lua require('user.utils').execute_file()<CR>]], opts)
 
 return {
   n = {
@@ -80,7 +80,7 @@ return {
     -- ["<C-Left>"] = false,
     -- ["<C-Right>"] = false,
     -- ["<C-Up>"] = false,
-    ["<C-q>"] = false,
+    -- ["<C-q>"] = false,
     ["<C-s>"] = false,
     ["<"] = false,
     [">"] = false,
@@ -122,7 +122,6 @@ return {
     -- recording
     ["Q"] = {"q", desc = "Record"},
     ["gQ"] = {"@q", desc = "Record"},
-    -- close buffers
 
     -- time stamps
     ["<F4>"] = { '=strftime("%Y-%m-%d")<CR>P', desc = "Time stamp"},
@@ -149,10 +148,13 @@ return {
   t = {
     -- ["<esc>"] = false,
     ["jk"] = false,
-    ["<c-q>"] = { "<c-\\><c-n>", desc = "Terminal normal mode" },
     ["<c-n>"] = { "<c-\\><c-n>", desc = "Terminal normal mode" },
     ["<esc>"] = { "<c-\\><c-n>", desc = "Terminal normal mode" },
+    -- ["<c-q>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
     ["<esc><esc>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
+    -- ["<c-t>"] = {'<Cmd>exe v:count1 . "ToggleTerm"<CR>', desc="Terminal toggle"},
+    ["<leader>tp"] = { function() astronvim.toggle_term_cmd("ipython") end, desc = "ToggleTerm iPython" },
+    ["<c-k>"] = {"<cmd>bd!<cr>", desc="Kill (del) buffer"},
   },
   x = {
     -- better increment/decrement
@@ -177,11 +179,15 @@ return {
     ["al"] = { ":normal val<cr>", desc = "Around line text object" },
   },
   [""] = {
+    -- disable default bindings
+    -- ["w"] = false,
+    -- ["c"] = false,
     ["<c-e><c-e>"] = { "<Plug>SendLine", desc = "Send line to REPL" },
     ["<c-e>"] = { "<Plug>Send", desc = "Send to REPL" },
     ['<c-PageUp>'] = { "<Cmd>BufferLineCyclePrev<CR>" },
     ['<c-PageDown>'] = { "<Cmd>BufferLineCycleNext<CR>" },
     ["<C-s>"] = {":w!<cr>", desc = 'Save'},
+    ["<c-k>"] = {"<cmd>bd!<cr>", desc = "Kill (del) buffer"},
   },
 }
 

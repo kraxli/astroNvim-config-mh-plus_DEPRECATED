@@ -78,7 +78,7 @@ M.openExtApp = function()
   if vim.fn.has "mac" == 1 then osKey = "mac"
     elseif vim.fn.has "unix" == 1 then osKey = "unix"
     elseif has_powershell then osKey = 'pwsh'
-    elseif has_win == 1 & has_powershell ~= 1 then osKey = "win"
+    elseif has_win == 1 and has_powershell ~= 1 then osKey = "win"
   end
 
   local cword = vim.fn.expand("<cWORD>")

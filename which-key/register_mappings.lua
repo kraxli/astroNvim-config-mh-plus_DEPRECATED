@@ -11,7 +11,7 @@ return {
       ["z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
       ["r"] = { "<cmd>SendHere<cr>", "Set REPL" },
       ["."] = { "<cmd>cd %:p:h<cr>", "Set CWD" },
-      ["<F4>"] = { '=strftime("%Y-%m-%d")<CR>P', "Time stamp"}, -- '=strftime("%H:%M")<CR>P'
+
       a = {
         name = "Annotate",
         ["<cr>"] = { function() require("neogen").generate() end, "Current" },
@@ -24,6 +24,8 @@ return {
       b = {
           name = 'Buffer',
           c = {'function() MiniBufremove.delete() end', 'Close buffer'},
+          k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
+          t = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Buffers"},
       },
 
       f = {
@@ -181,7 +183,7 @@ return {
         Dh = { "<cmd>vim.diagnostic.open_float", "Hover diagnostic" },
         -- leaderNormal['lI'] = {'<cmd>Telescope lsp_implementations<CR>', "Lsp implementations"}
       },
-    
+
       t = {
           name = "Terminal",
           -- p = { [[<cmd>lua require('core.utils').toggle_term_cmd({cmd='ipython', on_open='function(term) vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true}) end'})<CR>]], "iPython" },
@@ -207,6 +209,7 @@ return {
         name = 'Utils',
         w = {"<cmd>keeppatterns %substitute/\\s\\+$//e<CR>", "Clear postspace"},
       },
+      k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
     }, -- end prefix <leader>
     ["]"] = {
       f = "Next function start",
@@ -276,7 +279,7 @@ return {
       -- TODO: commented out commands are not working - check rafi/vim-config for fix
       -- Telescope general pickers
       a = { "<Cmd>Neotree focus<CR>", "Nvimtree toggle"},  -- Nvimtree
-      b = { '<cmd>Telescope buffers<CR>', "Buffers"},
+      b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Buffers"},
       c = { '<cmd>lua require("telescope.builtin").command_history()<CR>', "Command history"},
       d = { '<cmd>lua require"user.plugins.telescope".pickers.plugin_directories()<CR>', "Directories"},
       e = { "<Cmd>Neotree toggle<CR>", "Nvimtree toggle"},  -- Nvimtree
@@ -286,6 +289,7 @@ return {
       h = {'<cmd>lua require("telescope.builtin").highlights()<CR>', "Highlights"},
       H = {'<cmd>lua require("telescope.builtin").search_history()<CR>', "Search history"},
       j = {'<cmd>lua require("telescope.builtin").jumplist()<CR>', "Jumplist"},
+      k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
       l = { name='VimTex' },
       m = {'<cmd>lua require("telescope.builtin").marks()<CR>', "Marks"},
       n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", 'Notifications' },  -- require("telescope").load_extension("notify")
@@ -353,6 +357,9 @@ return {
       t = {"<cmd>ToggleDiag<cr>", "Toggle virtual text"},
       v = {"<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Definition vsplit"},
     },
+    ["q"] = { function() MiniBufremove.delete() end, "Bye Buffer" },
+    ["<c-q>"] = { function() MiniBufremove.delete() end, "Bye Buffer" },
+    ["<F4>"] = { '=strftime("%Y-%m-%d")<CR>P', "Time stamp"}, -- '=strftime("%H:%M")<CR>P'
   },
   -- insert mode
   i = {
