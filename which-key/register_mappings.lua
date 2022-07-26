@@ -4,7 +4,7 @@ return {
   n = {
     ["<leader>"] = {
       ["c"] = { function() MiniBufremove.delete() end, "Bye Buffer" },
-      ["C"] = { "<cmd>bdelete<cr>", "Close Buffer" },
+      ["C"] = { "<cmd>bdelete!<cr>", "Close Buffer" },
       ["N"] = { "<cmd>tabnew<cr>", "New Buffer" },
       ["H"] = { "<cmd>set hlsearch!<cr>", "Toggle Highlight" },
       ["<cr>"] = { '<esc>/<++><cr>"_c4l', "Next Template" },
@@ -24,7 +24,8 @@ return {
       b = {
           name = 'Buffer',
           c = {'function() MiniBufremove.delete() end', 'Close buffer'},
-          k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
+          -- k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
+          q = {"<cmd>bd!<cr>", "Kill (del) buffer"},
           t = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Buffers"},
       },
 
@@ -209,19 +210,21 @@ return {
         name = 'Utils',
         w = {"<cmd>keeppatterns %substitute/\\s\\+$//e<CR>", "Clear postspace"},
       },
-      k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
+      -- k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
     }, -- end prefix <leader>
     ["]"] = {
       f = "Next function start",
       x = "Next class start",
       F = "Next function end",
       X = "Next class end",
+      z = 'Fix next misspelling',
     },
     ["["] = {
       f = "Previous function start",
       x = "Previous class start",
       F = "Previous function end",
       X = "Previous class end",
+      z = 'Fix previous misspelling'
     },
     g = {
       t = {
@@ -289,13 +292,14 @@ return {
       h = {'<cmd>lua require("telescope.builtin").highlights()<CR>', "Highlights"},
       H = {'<cmd>lua require("telescope.builtin").search_history()<CR>', "Search history"},
       j = {'<cmd>lua require("telescope.builtin").jumplist()<CR>', "Jumplist"},
-      k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
+      -- k = {"<cmd>bd!<cr>", "Kill (del) buffer"},
       l = { name='VimTex' },
       m = {'<cmd>lua require("telescope.builtin").marks()<CR>', "Marks"},
       n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", 'Notifications' },  -- require("telescope").load_extension("notify")
       N = { '<cmd>lua require"user.plugins.telescope".pickers.notebook()<CR>', "Notebook"},
-      -- p = {'<cmd>lua require("telescope.builtin").projects()<CR>', "Projects"},
       -- o = {'<cmd>lua require("telescope.builtin").vim_options()<CR>', "Vim options"},
+      -- p = {'<cmd>lua require("telescope.builtin").projects()<CR>', "Projects"},
+      q = {"<cmd>bd!<cr>", "Kill (del) buffer"},
       r = {'<cmd>lua require("telescope.builtin").resume()<CR>', "Resume last"},
       R = {'<cmd>lua require("telescope.builtin").pickers()<CR>', "Pickers"},
       -- S = {'<cmd>lua require("telescope.builtin").session-lens search_session()<CR>', "Search session"},
@@ -329,7 +333,7 @@ return {
       b = { '<cmd>buffer#<CR>', "Buffer alternate"},
       o = { '<cmd>only<CR>', "Only this"},
       c = { '<cmd>close<CR>', "Close"},
-      d = { '<cmd>bdelete<CR>', "Buffer delete"},
+      d = { '<cmd>bdelete!<CR>', "Buffer delete"},
       q = { '<cmd>quit<CR>', "Quit"},
       w = { '<cmd>save %<CR>', 'Save'},
       x = { '<cmd>call utils#window_empty_buffer()<CR>', "Buffer empty"},

@@ -51,7 +51,7 @@ local keymap = vim.api.nvim_set_keymap
   keymap("n", "gx", [[<cmd> lua require("user.utils").openExtApp()<CR>]], {})
 
   -- code_jump
-  vim.api.nvim_set_keymap('n', '<C-BS>', '<C-o>', {noremap=false})
+  -- vim.api.nvim_set_keymap('n', '<C-BS>', '<C-o>', {noremap=false})
   vim.api.nvim_set_keymap('n', '<M-left>', '<C-o>', {noremap=false})
   vim.api.nvim_set_keymap('n', '<M-right>', '<C-i>', {noremap=false})
 
@@ -130,6 +130,10 @@ return {
     ["]z"] = {"]sz=", desc = "Correct next spell", noremap = true, silent = true },
     -- Miscellenuous
     ["<C-u>"] = {":undo<cr>", desc = "Undo"},
+
+    -- close / delete buffer
+    ["<c-q>"] = {"<cmd>bd!<cr>", desc = "Kill (del) buffer"}, -- TODO: resolve conflict
+
   },
   i = {
     -- type template string
@@ -150,11 +154,11 @@ return {
     ["jk"] = false,
     ["<c-n>"] = { "<c-\\><c-n>", desc = "Terminal normal mode" },
     ["<esc>"] = { "<c-\\><c-n>", desc = "Terminal normal mode" },
-    -- ["<c-q>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
+    ["<c-c>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
     ["<esc><esc>"] = { "<c-\\><c-n>:q<cr>", desc = "Terminal quit" },
     -- ["<c-t>"] = {'<Cmd>exe v:count1 . "ToggleTerm"<CR>', desc="Terminal toggle"},
     ["<leader>tp"] = { function() astronvim.toggle_term_cmd("ipython") end, desc = "ToggleTerm iPython" },
-    ["<c-k>"] = {"<cmd>bd!<cr>", desc="Kill (del) buffer"},
+    ["<c-q>"] = {"<cmd>bd!<cr>", desc="Kill (del) buffer"},
   },
   x = {
     -- better increment/decrement
@@ -187,7 +191,7 @@ return {
     ['<c-PageUp>'] = { "<Cmd>BufferLineCyclePrev<CR>" },
     ['<c-PageDown>'] = { "<Cmd>BufferLineCycleNext<CR>" },
     ["<C-s>"] = {":w!<cr>", desc = 'Save'},
-    ["<c-k>"] = {"<cmd>bd!<cr>", desc = "Kill (del) buffer"},
+    -- ["<c-D>"] = {"<cmd>bd!<cr>", desc = "Kill (del) buffer"},
   },
 }
 
