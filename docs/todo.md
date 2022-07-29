@@ -12,4 +12,4 @@
 - [ ] Customize cmp Completion
 - [ ] lazygit (go back)
 - [o] better / consistent quitting (closing) of buffers, expecially floating windows/buffers
-
+- [ ] new mappings for Calendar-vim plugin (switched off defaults because of conflicts)
