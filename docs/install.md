@@ -19,6 +19,8 @@ git fetch user_mehalter --tags
 git merge --allow-unrelated-histories user_mehalter
 ```
 
+## Add local submodule 
+
 ```zsh
 cd ~/.config/nvim
 git submodule add  https://github.com/kraxli/local-nvim.git lua/local
