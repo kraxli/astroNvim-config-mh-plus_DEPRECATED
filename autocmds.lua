@@ -47,10 +47,11 @@ local augroup = vim.api.nvim_create_augroup
 --   command='tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>',
 -- })
 
-augroup("FloatingWindow", {})
+augroup("FloatingWindow", { clear = true})
 autocmd("TermEnter term://*toggleterm#*",{
   desc="Close floating window",
   group='FloatingWindow',
+  -- pattern = "*",
   -- command='tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>',
   command = "nnoremap <silent><buffer> q :close<CR>",
 })
@@ -61,8 +62,8 @@ vim.cmd [[
   autocmd!
   
   "
-  autocmd FileType toggleterm,qf,help,man,lspinfo,TelescopePrompt nnoremap <silent><buffer> q :close<CR>
-  autocmd FileType toggleterm,qf,help,man,lspinfo,TelescopePrompt nnoremap <silent><buffer> <localleader>c :close<CR>
+  autocmd FileType toggleterm,qf,help,man,lspinfo,TelescopePrompt nnoremap <silent><buffer> q :close!<CR>
+  autocmd FileType toggleterm,qf,help,man,lspinfo,TelescopePrompt nnoremap <silent><buffer> <localleader>c :close!<CR>
   " set file types
   autocmd BufRead,BufEnter,BufWinEnter,BufNew,VimEnter *.md,*.wiki setlocal filetype=vimwiki.markdown
   autocmd FileType vimwiki.markdown,vimwiki,markdown,text set foldmethod=expr foldexpr=MkdFoldSimple()

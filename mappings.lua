@@ -129,7 +129,7 @@ return {
     ["[z"] = {"[sz=", desc = "Correct previous spell", noremap = true, silent = true },
     ["]z"] = {"]sz=", desc = "Correct next spell", noremap = true, silent = true },
     -- Miscellenuous
-    ["<C-u>"] = {":undo<cr>", desc = "Undo"},
+    ["<C-z>"] = {":undo<cr>", desc = "Undo"},
 
     -- close / delete buffer
     ["<c-q>"] = {"<cmd>bd!<cr>", desc = "Kill (del) buffer"}, -- TODO: resolve conflict
