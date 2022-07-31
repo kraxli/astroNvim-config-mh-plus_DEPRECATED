@@ -29,3 +29,11 @@ in `lua`
   local mode = vim.api.nvim_get_mode().mode
 ```
 
+## spell
+
+Enhance runtime path with folder containing the spell files (e.g. ~/.config/nvim/lua/user/)
+
+- https://www.vimfromscratch.com/articles/spell-and-grammar-vim
+- https://ostechnix.com/use-spell-check-feature-vim-text-editor/
+- http://ftp.vim.org/vim/runtime/spell/
+
