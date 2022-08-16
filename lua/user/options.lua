@@ -1,9 +1,20 @@
 
 
+---------------------------------------------------------
 -- general
-IS_WINDOWS = (vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1)
+---------------------------------------------------------
+-- IS_WINDOWS = (vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1)
 
+-- variables specific to this repo
+CONFIGS = {}
+CONFIGS.toggleterm = {
+  filetype2exclude = {"alpha"},
+  default = {repl = 'zsh'},
+  python = { repl = 'ipython', exe_file_terminal = 'ipython', exe_file_opt = '-i', exe_cmd = [[\%run]] },
+  -- lua = {repl = 'lua5.1'},
+}
 
+-------------------------------------------------------
 -- colors:
 -------------------------------------------------------
 -- local colorscheme =  'onehalfdark' -- 'default_theme' --'onehalflight' , 'onehalfdark'

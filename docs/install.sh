@@ -19,6 +19,20 @@ sudo apt -y install npm
 
 # -- general --
 sudo apt-get install xclip
+sudo apt install pcre2-utils
+sudo luarocks install luarocks-fetch-gitrec  # --local
+
+# -- display images --
+sudo pip3 install --upgrade Pillow
+    # pip uninstall pillow
+    # CC="cc -mavx2" pip install -U --force-reinstall pillow-simd
+sudo pip3 install cairosvg
+sudo apt install xorg-dev # required for ueberzug
+sudo pip install ueberzug
+# display latex formulas
+sudo pip install pnglatex
+# isplaying Plotly figures
+sudo pip3 install --upgrade plotly kaleido
 
 # -- markdwon --
 sudo npm install -g markdownlint-cli

@@ -103,7 +103,13 @@ end
 local get_terminal = function (filetype_shell, exe_type)
 
   local filetype = vim.bo.filetype
-  local terminal = filetype_shell[filetype][exe_type] or filetype
+  local terminal
+
+  if CONFIGS.toggleterm[filetype] ~= nil then
+    terminal = filetype_shell[filetype][exe_type] or filetype
+  else
+    terminal = filetype_shell["default"]['repl']
+  end
 
   return terminal
 
@@ -129,7 +135,7 @@ end
 
 M.excecute_code = function(selection_type)
 
-  local terminal = get_terminal(KXNV.toggleterm, 'repl')
+  local terminal = get_terminal(CONFIGS.toggleterm, 'repl')
   local count = get_count(terminal)
   require('toggleterm').send_lines_to_terminal(selection_type, true, count)
 
@@ -138,7 +144,7 @@ end
 
 M.toggle_term = function()
   local filetype = vim.bo.filetype
-  local terminal = get_terminal(KXNV.toggleterm, 'exe_file_terminal')
+  local terminal = get_terminal(CONFIGS.toggleterm, 'exe_file_terminal')
   local count, _ = get_count(terminal)
   require'toggleterm'.toggle_command('', count)
 end
@@ -146,7 +152,7 @@ end
 M.execute_file = function()
 
   local filetype = vim.bo.filetype
-  local terminal = get_terminal(KXNV.toggleterm, 'exe_file_terminal')
+  local terminal = get_terminal(CONFIGS.toggleterm, 'exe_file_terminal')
   local count, term_exists = get_count(terminal)
   local file_name = vim.api.nvim_buf_get_name(0)
 
@@ -159,14 +165,14 @@ M.execute_file = function()
   local term_cmd = ''
 
   if term_exists then -- TODO: ! not working see function get_count()
-    term_cmd = [[cmd=']] .. KXNV.toggleterm[filetype].exe_cmd .. [[ "]] .. file_name .. [["']]
+    term_cmd = [[cmd=']] .. CONFIGS.toggleterm[filetype].exe_cmd .. [[ "]] .. file_name .. [["']]
     print(1)
-  elseif KXNV.toggleterm[filetype].exe_file_opt ~= nil then
+  elseif CONFIGS.toggleterm[filetype].exe_file_opt ~= nil then
   -- and term_details.cmd_opt ~= ' ' and term_details.cmd_opt ~= '' then
-    local cmd_opt = KXNV.toggleterm[filetype].exe_file_opt .. ' ' .. file_name -- TODO: is shellescape the problem?
+    local cmd_opt = CONFIGS.toggleterm[filetype].exe_file_opt .. ' ' .. file_name -- TODO: is shellescape the problem?
     term_cmd = terminal .. ' ' .. cmd_opt
   else
-    term_cmd = KXNV.toggleterm['default'].repl
+    term_cmd = CONFIGS.toggleterm['default'].repl
   end
   -- require('toggleterm').exec_command(term_cmd, count)
   local term_details = { cmd = term_cmd, count = count }
