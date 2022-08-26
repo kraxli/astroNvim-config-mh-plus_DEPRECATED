@@ -13,7 +13,13 @@ git clone https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim
 - Install these user settings
 
 ```sh
+# Linux:
 git clone https://github.com/kraxli/astroNvim-config-mh-plus.git ~/.config/astronvim
+
+# windows:
+git clone https://github.com/kraxli/astroNvim-config-mh-plus.git $APPDATA$\Local\astronvim
+# Windows Powershell:
+git clone https://github.com/kraxli/astroNvim-config-mh-plus.git ~\AppData\Local\astronvim
 ```
 
 - Initialize AstroVim

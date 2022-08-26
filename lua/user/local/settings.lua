@@ -1,31 +1,31 @@
-
 -- directories
-dirDbox = '~/Dropbox/'
-dirOnedrive = '/home/dave/OneDrive/'
-dirPkd = dirDbox .. 'PKD'
-dirNvim = '~/.config/nvim'
-dirLvimConf = '~/.config/lvim'
-local fileSufixIds = '00_Private/Notes/id.txt'
+dirDbox = "~/Dropbox/"
+dirOnedrive = "/home/dave/OneDrive/"
+dirPkd = dirDbox .. "PKD"
+dirNvim = "~/.config/nvim"
+local fileSufixIds = "00_Private/Notes/id.txt"
 
 -- directories for vimscript
 vim.g.dirDbox = dirDbox
 vim.g.dirOnedrive = dirOnedrive
 vim.g.dirPkd = dirPkd
 vim.g.Nvim = dirNvim
-vim.g.dirLvim = dirLvim
-vim.g.dirBlog =  '~/Dropbox/PKD/blog_posts/'
-vim.g.sufixOut = 'out/'
+vim.g.dirBlog = "~/Dropbox/PKD/blog_posts/"
+vim.g.sufixOut = "out/"
 
 -- kraxli/vim-snips
-vim.g.dir_screenshots = '/home/dave/Pictures'
-vim.g.dir_board = ''
+vim.g.dir_screenshots = "/home/dave/Pictures"
+vim.g.dir_board = ""
 vim.g.signature = "David Scherrer"
 
 -- lvim.builtin.which_key.mappings["I"] = {}
 -- lvim.builtin.which_key.mappings["S"] = {}
 -- lvim.builtin.which_key.mappings["I"] = {"<cmd>execute('e " .. dirOnedrive .. fileSufixIds .. "')<cr>", "Ids file"}
 -- lvim.builtin.which_key.mappings["S"] = {"<cmd>execute('e " .. dirOnedrive .. fileSufixIds .. "')<cr>", "Ids file"}
-
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+keymap("n", "<leader>id", "cd " .. dirOnedrive .. fileSufixIds, opts)
+print("local loaded")
 
 vim.cmd([[
 
@@ -56,8 +56,8 @@ vim.cmd([[
 
   command! Cd2Pkd :execute('cd ' . g:dirPkd)
   command! Cd2Nvim :cd g:dirNvim
+  command! Cd2astroNvim :execute('cd ' . '~/.config/astronvim') 
   command! Cd2D :execute('cd ' . g:dirOnedrive . '03_Coding/D')
   command! Cd2Python :execute('cd ' . g:dirOnedrive . '03_Coding/Python')
 
 ]])
-

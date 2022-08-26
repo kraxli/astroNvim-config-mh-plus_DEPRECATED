@@ -207,7 +207,7 @@ return {
 	},
 
 	-- R support
-	{ "jalvesaq/Nvim-R" },
+	{ "jalvesaq/Nvim-R", ft = { "r", "R", "rmd" }, command = { "StartR" } },
 
 	-- cwd to the project's root directory
 	{
