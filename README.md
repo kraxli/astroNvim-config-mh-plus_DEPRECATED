@@ -10,7 +10,7 @@ My personal user config for AstroVim
 git clone https://github.com/AstroNvim/AstroNvim.git ~/.config/nvim
 ```
 
-- Install these user settings
+- Install the user settings
 
 ```sh
 # Linux:
@@ -27,6 +27,10 @@ git clone https://github.com/kraxli/astroNvim-config-mh-plus.git ~\AppData\Local
 ```sh
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 ```
+
+## Further setups and installations from within Nvim
+
+see [Setups in astronivim/github.io](https://astronvim.github.io/#-setup)
 
 ## Merge updates of mehalter
 
