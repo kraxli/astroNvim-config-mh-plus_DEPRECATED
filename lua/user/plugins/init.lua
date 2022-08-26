@@ -38,6 +38,8 @@ return {
 	------------------------------------------------------------------
 	-- General
 	------------------------------------------------------------------
+	{ "nvim-treesitter/nvim-treesitter-refactor" },
+	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
 		"romainl/vim-cool", -- disables search highlighting when you are done
 		event = { "CursorMoved", "InsertEnter" },

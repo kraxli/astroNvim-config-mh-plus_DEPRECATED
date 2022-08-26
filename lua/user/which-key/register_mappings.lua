@@ -369,7 +369,7 @@ return {
 					"iPython",
 				},
 				t = { '<Cmd>lua require("user.utils").toggle_term()<CR>', "ToggleTerm" },
-				x = { [[<cmd>lua require('user.utils').execute_file()<CR>]], "Execute buffer" },
+				-- x = { [[<cmd>lua require('user.utils').execute_file()<CR>]], "Execute buffer" },
 				z = { [[<cmd>lua require "core.utils".toggle_term_cmd({cmd=vim.o.shell})<CR>]], "Shell" },
 			},
 
