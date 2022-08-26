@@ -1,4 +1,3 @@
-
 vim.cmd([[
   function! MkdFoldSimple()
 
@@ -63,7 +62,7 @@ vim.cmd([[
   endfunction
 
 
-  " TODO: tern into lua cuntion (see: https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/)
+  " TODO: tern into lua funtion (see: https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/)
   function! Toggle_background() "{{{
 	  if ! exists('g:colors_name')
 		  echomsg 'No colorscheme set'
@@ -128,5 +127,3 @@ vim.cmd([[
   endfunction "}}}
 
 ]])
-
-
