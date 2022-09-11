@@ -207,6 +207,26 @@ return {
 		event = "BufReadPost", -- FileType BufRead
 		cmd = { "ToggleDiag" },
 	},
+	-- simple-diagnostics removes the noise of every line error, and only show the current line error.
+	{
+		"casonadams/simple-diagnostics.nvim",
+		config = function()
+			vim.diagnostic.config({
+				virtual_text = false,
+				underline = true,
+				float = { source = "always" },
+				severity_sort = true,
+				signs = true,
+				update_in_insert = false,
+			})
+		end,
+		setup = function()
+			require("simple-diagnostics").setup({
+				show_virtual_text = true,
+				show_message_area = false,
+			})
+		end,
+	},
 
 	-- R support
 	{ "jalvesaq/Nvim-R", ft = { "r", "R", "rmd" }, command = { "StartR" } },
@@ -270,6 +290,8 @@ return {
 	{ "Th3Whit3Wolf/one-nvim" }, -- lazy by nature
 	{ "sonph/onehalf", rtp = "vim" },
 	{ "NLKNguyen/papercolor-theme" },
+	{ "sainnhe/edge" },
+	{ "sainnhe/everforest" },
 
 	-- -------------------------------------------------------
 	-- Markdown, Note taking, Writing
