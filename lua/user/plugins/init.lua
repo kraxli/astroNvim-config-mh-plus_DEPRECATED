@@ -361,6 +361,14 @@ return {
 		setup = function()
 			require("user.plugins.vimwiki")
 		end,
+		disable = true,
+	},
+
+	{
+		"ixru/nvim-markdown",
+		config = function()
+			require("user.plugins.vim-markdown").nvim_markdown()
+		end,
 	},
 
 	-- {
