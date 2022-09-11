@@ -1,14 +1,13 @@
-
-- [X] user/settings.lua
-- [X] user/autocmds.lua
-- [X] autoload/*  -> markdown folding
-- [X] after/ftplugin
-- [X] user/utils.lua
-- [X] user/which-key/register_n_leader.lua ??
-- [X] which-key
-- [X] plugins
-- [X] [x] user.plugins.telescope".pickers
-- [X] local
+- [x] user/settings.lua
+- [x] user/autocmds.lua
+- [x] autoload/\* -> markdown folding
+- [x] after/ftplugin
+- [x] user/utils.lua
+- [x] user/which-key/register_n_leader.lua ??
+- [x] which-key
+- [x] plugins
+- [x] [x] user.plugins.telescope".pickers
+- [x] local
 - [ ] Customize cmp Completion
 - [ ] lazygit (go back)
 - [o] better / consistent quitting (closing) of buffers, expecially floating windows/buffers
@@ -19,3 +18,8 @@
 - [ ] https://alpha2phi.medium.com/vim-neovim-plugins-for-a-better-integrated-experience-6accd4c2a52c
 - [ ] https://alpha2phi.medium.com/vim-neovim-managing-notes-and-todo-list-8ae8e3db6464
 - [ ] https://alpha2phi.medium.com/new-neovim-plugins-to-improve-development-workflow-33419d74e9ac
+
+https://alpha2phi.medium.com/neovim-tips-for-a-better-coding-experience-3d0f782f034e
+
+- [x] use {'nvim-treesitter/nvim-treesitter-refactor'}
+- [x] https://github.com/romgrk/nvim-treesitter-context
